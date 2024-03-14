@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+
+{% block css %}
+
+
+
+
+
+
+
+{% endblock css %}
+
+
+<title>{% block title %} HOME {% endblock%}</title>
+
+
+{% block body %}
+
+
+<style>
+	.wrapper {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1px;
+		/* background-color: aliceblue; */
+	}
+</style>
+
+
+
+
+
+
+<!-- =========================================================================================================================================-->
+
+<!-- <hr style="background-color: white; margin-top: 20px;">
+
+<div id="h1" style="display:flex;align-items:center;justify-content: center; margin-top: 20px;"><h1 style="background-color:purple;opacity: .5; padding: 20px; color: white;">CATEGORIES</h1></div>
+
+
+--------------------------------------------------------------------------------------  -->
+
+
+
+
+
+
+
+
+<div class="container-fluid pt-5">
+	<div class="row px-xl-5 pb-3">
+		<div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+			<div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+				<h1 class="fa fa-check text-primary m-0 mr-3"></h1>
+				<h5 class="font-weight-semi-bold m-0">Quality Product</h5>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+			<div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+				<h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
+				<h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+			<div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+				<h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+				<h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+			<div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+				<h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+				<h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- --------------------------------------------------------------------------------------------------------- -->
+
+
+
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Trandy Products</span></h2>
+        </div>
+		
+		
+		<div class=" col-6">
+
+			<div class="row wrapper">
+				{% for i in prod %}
+				<div class="col" style="width: 300px;">
+					<div class="card shadow-sm">
+						<img src="{{i.images.url}}" style="height: 230px;object-fit:contain;">
+						<div class="card-body">
+							<span class="text-muted fs-6">{{i.cat.name}}</span>
+							<h6>{{i.name}}</h6>
+							<p class="card-text"></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a href="{% url 'show' i.id %}">
+										<button style="background-color:rgb(32, 6, 27);" id="liveToastBtn" data-id="1"
+											data-price="109" data-product="Jeans" data-quantity="1" type="button"
+											class="btn btn-sm btn-outline-secondary btn-success text-white">view
+											Product</button></a>
+
+
+
+								</div>
+								<small class="text-muted "> <i class="bi bi-currency-rupee"></i>{{i.prize}}</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+
+		</div>
+
+
+
+
+
+
+
+{% endblock body %}

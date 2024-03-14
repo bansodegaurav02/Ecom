@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+<title>{% block title %} SHOPING CART {% endblock%}</title>
+
+
+
+{% block body %}
+
+<style>
+  body {
+    font-size: larger;
+    background-image: url("{% static 'images/gradient-wallpaper.jpg'%}");
+    background-size: cover;
+    color: black;
+
+
+  }
+
+  a{
+    color: black;
+    padding: 5px;
+  }
+</style>
+
+
+
+
+
+
+
+<div class="container" style="margin-top: 200px;background-color: white; padding: 20px;">
+  <table id="cart">
+    <thead>
+      <tr>
+        <th style="width:50%">Product</th>
+        <th style="width:10%">Price</th>
+        <th style="width:8%">Quantity</th>
+        <th style="width:22%" class="text-center">Subtotal</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <hr>
+      {% for i in cart_info %}
+      <tr>
+
+        <td data-th="Product">
+          <hr>
+          <div class="row">
+            <div class="col-sm-2 "><img src="{{i.product.images.url}}"  alt="..." class="img-responsive"
+                style="height: 200px ;width: 200px;object-fit: contain;" /></div>
+            <div class="col-sm-10" style="position: absolute;left: 500px;">
+              <h4 class="nomargin";>{{i.product.name}}</h4>
+
+            </div>
+          </div>
+        </td>
+        <td data-th="Price"> <i class="bi bi-currency-rupee"></i>{{i.product.prize}}</td>
+        <td data-th="Quantity">
+          <a href="{% url 'increase_cart' i.product.id %}"><i class="bi bi-caret-up-fill"></i></a> {{i.quantity}} <a
+              href="{% url 'decrease_cart' i.product.id %}"><span><i class="bi bi-caret-down-fill"></i></span></a>
+
+        </td>
+
+        <td data-th="Subtotal" class="text-center"> Total <i class="bi bi-currency-rupee"></i>{% widthratio i.quantity 1 i.product.prize %}</td>
+        <td class="actions" data-th="">
+          <button class="btn btn-info btn-danger"><a href="{% url 'delete_cart' i.id %}">Remove</a></button>
+
+        </td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+
+      <tr>
+        <td><a href="{% url 'home' %}" class="btn btn-primary"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+        </td>
+        <td colspan="2" class="hidden-xs"></td>
+
+        <td class="hidden-xs text-center"><strong>Total {{total}}</strong></td>
+        {% for i in cart_info %}
+
+        {% if forloop.counter >= 1 %}
+        <td><a href="{% url 'ch' %}" class="btn btn-primary btn-block">checkout </a></td>
+
+        {% endif %}
+        {% endfor %}
+      </tr>
+
+    </tfoot>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock body %}

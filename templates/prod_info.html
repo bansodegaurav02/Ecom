@@ -1,0 +1,355 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+
+<style>
+	.wrapper {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 4px;
+		/* background-color: aliceblue; */
+	}
+
+	.rating {
+		display: inline-block;
+		position: relative;
+		height: 50px;
+		line-height: 50px;
+		font-size: 50px;
+	}
+
+	.rating label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		cursor: pointer;
+	}
+
+	.rating label:last-child {
+		position: static;
+	}
+
+	.rating label:nth-child(1) {
+		z-index: 5;
+	}
+
+	.rating label:nth-child(2) {
+		z-index: 4;
+	}
+
+	.rating label:nth-child(3) {
+		z-index: 3;
+	}
+
+	.rating label:nth-child(4) {
+		z-index: 2;
+	}
+
+	.rating label:nth-child(5) {
+		z-index: 1;
+	}
+
+	.rating label input {
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+	}
+
+	.rating label .icon {
+		float: left;
+		color: transparent;
+	}
+
+	.rating label:last-child .icon {
+		color: #000;
+	}
+
+	.rating:not(:hover) label input:checked~.icon,
+	.rating:hover label:hover input~.icon {
+		color: #09f;
+	}
+
+	.rating label input:focus:not(:checked)~.icon:last-child {
+		color: #000;
+		text-shadow: 0 0 5px #09f;
+	}
+
+	.box {
+		box-shadow: 5px 3px 5px black;
+	}
+</style>
+
+
+
+
+
+<!-- 
+
+
+		<div class="container box">
+			{% for i in prod %}
+			<div class="row" style="margin-top:30px;background-color:white">
+
+				<div class="col-6" style='margin-right: 5px;'>
+
+					<img class="headset" src="{{i.images.url}}" alt="headphones set with pink color "
+						style="height:500px;width: 500px;position: absolut;left: 1px;object-fit: cover;border-radius: 20px;">
+				</div>
+
+				<div class="col" style="margin-top: 20px; margin-left:20px; font-size: medium;">
+					<button class="free-shipping">free Shiping</button>
+					<h2>{{i.name}}</h2>
+					<p>({{rate}}) ⭐</p>
+					<hr>
+					<p>{{i.description}}</p>
+					<hr>
+					<h2> <i class="bi bi-currency-rupee"></i>{{i.prize}}</h2>
+					<a href="{% url 'addcart' i.id %}"><button class="add-to-cart  btn btn-primary"><i
+								class="bi bi-cart"></i>Add to Cart</button></a>
+					<a href="{% url 'buy' i.id %}"><button class="add-to-cart  btn btn-primary" >Buy</button></a>
+					<h3 class="stock">
+						<i class="fa-solid fa-circle"></i> 50+ pcs. in stock.
+					</h3>
+				</div>
+
+
+			</div>
+			
+		</div>
+
+
+
+
+{% endfor %}
+
+
+ -->
+
+
+<!-- ========================================================================= -->
+{% for i in prod %}
+<div class="container-fluid py-5">
+	<div class="row px-xl-5">
+		<div class="col-lg-5 pb-5">
+			<div id="product-carousel" class="carousel slide" data-ride="carousel">
+				<div class="carousel-inner border">
+					<div class="carousel-item active">
+						<img class="w-100 h-100" src="{{i.images.url}}" alt="Image">
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="col-lg-7 pb-5">
+			<h3 class="font-weight-semi-bold">{{i.name}}</h3>
+			<div class="d-flex mb-3">
+
+				<p>({{rate}}) ⭐</p>
+			</div>
+			<h3 class="font-weight-semi-bold mb-4">{{i.prize}}</h3>
+			<p class="mb-4">{{i.description}}</p><br>
+			<a href="{% url 'addcart' i.id %}"><button class="btn btn-primary px-3"><i
+						class="fa fa-shopping-cart mr-1"></i> Add To Cart</button></a>
+
+		</div>
+
+		<div class="d-flex align-items-center mb-4 pt-2">
+			<div class="input-group quantity mr-3" style="width: 130px;">
+
+
+			</div>
+
+		</div>
+		{% endfor %}
+
+	</div>
+</div>
+<div class="row px-xl-5">
+	<div class="col">
+		<div class="nav nav-tabs justify-content-center border-secondary mb-4">
+			<a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
+
+			
+		</div>
+		<div class="tab-content">
+			<div class="tab-pane fade show active" id="tab-pane-1">
+				<h4 class="mb-3">Product Description</h4>
+				<p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo
+					dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed
+					sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor
+					kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo
+					est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur
+					at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea
+					invidunt.</p>
+				<p>Dolore magna est eirmod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor consetetur
+					sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita clita diam clita. Sea
+					amet et sed ipsum lorem elitr et, amet et labore voluptua sit rebum. Ea erat sed et diam takimata
+					sed justo. Magna takimata justo et amet magna et.</p>
+			</div>
+			
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ============================================================================================================= -->
+<div class="text-center mb-4">
+	<h2 class="section-title px-5"><span class="px-2">You May Also Like</span></h2>
+</div>
+
+<div class=" col-6">
+
+	<div class="row wrapper">
+		{% for i in prod %}
+		<div class="col" style="width: 300px;">
+			<div class="card shadow-sm">
+				<img src="{{i.images.url}}" style="height: 230px;object-fit:contain;">
+				<div class="card-body">
+					<span class="text-muted fs-6">{{i.cat.name}}</span>
+					<h6>{{i.name}}</h6>
+					<p class="card-text"></p>
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="btn-group">
+							<a href="{% url 'show' i.id %}">
+								<button style="background-color:rgb(32, 6, 27);" id="liveToastBtn" data-id="1"
+									data-price="109" data-product="Jeans" data-quantity="1" type="button"
+									class="btn btn-sm btn-outline-secondary btn-success text-white">view
+									Product</button></a>
+
+
+
+						</div>
+						<small class="text-muted "> <i class="bi bi-currency-rupee"></i>{{i.prize}}</small>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+</div>
+
+
+
+<!-- ======================================================================================= -->
+{% for i in prod %}
+
+<br><br>
+<div class="" style="align-items: center;margin-top: 20px;padding: 5px;border-radius: 20px;">
+	
+	<div class="text-center mb-4">
+		<h2 class="section-title px-5"><span class="px-2">Customer Review</span></h2><br><br>
+
+		<h6>Write Your Review </h6>
+	<form action="{% url 'add_rating' i.id %}" method='POST'>
+		{% csrf_token %}
+		<h6>How do you rate this product ?</h6>
+		<div class="rating">
+			<label>
+				<input type="radio" name="stars" value="1" />
+				<span class="icon">★</span>
+			</label>
+			<label>
+				<input type="radio" name="stars" value="2" />
+				<span class="icon">★</span>
+				<span class="icon">★</span>
+			</label>
+			<label>
+				<input type="radio" name="stars" value="3" />
+				<span class="icon">★</span>
+				<span class="icon">★</span>
+				<span class="icon">★</span>
+			</label>
+			<label>
+				<input type="radio" name="stars" value="4" />
+				<span class="icon">★</span>
+				<span class="icon">★</span>
+				<span class="icon">★</span>
+				<span class="icon">★</span>
+			</label>
+			<label>
+				<input type="radio" name="stars" value="5" />
+				<span class="icon">★</span>
+				<span class="icon">★</span>
+				<span class="icon">★</span>
+				<span class="icon">★</span>
+				<span class="icon">★</span>
+			</label>
+		</div><br>
+		<label for="">Review :</label><br>
+		<textarea name="info" id="" cols="50" rows="4"></textarea><br>
+
+
+
+		<a href="{ % url 'add_rating' i.id %}"><button type="submit" class=" btn btn-primary">Submit Review</button></a>
+
+
+	</form>
+
+	
+	{% endfor %}
+
+	</div>
+	
+
+<br><br>
+
+<div class="text-center mb-4">
+	<h2 class="section-title px-5"><span class="px-2">All Reviews</span></h2>
+</div>
+
+	
+	{% for i in review %}
+
+
+	<div
+		style="border: 1px solid;background-color:whitesmoke; margin-top: 30px;padding: 20px;border-radius: 10px;box-shadow: 5px 3px 5px black  ;">
+		<h6> <i class="fa-solid fa-user"></i> {{i.0}}</h3>
+			<h6>⭐({{i.1}})</h3>
+				<p>{{i.2}}</p>
+
+	</div><br>
+	{% endfor %}
+
+
+
+</div><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- {{review}} -->
+
+
+
+
+
+
+
+
+
+<script>
+	$(':radio').change(function () {
+		console.log('New star rating: ' + this.value);
+	});
+</script>
+
+
+
+{% endblock body %}

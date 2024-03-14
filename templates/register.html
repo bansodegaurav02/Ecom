@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+<title>{% block title %} REGISTER {% endblock%}</title>
+
+
+
+{% block body %}
+
+
+
+<style>
+    .Main {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 100px;
+        margin-left: 500px;
+
+
+
+    }
+
+    body {
+        background-image: url('');
+        object-position: center;
+    }
+
+    img {
+        height: 500px;
+        width: 500px;
+        position: absolute;
+        left: 1px;
+        top: 150px;
+        border-radius: 500px;
+        object-fit: cover;
+
+    }
+</style>
+
+<body style="position: relative;">
+
+
+
+    <div class="Main" >
+
+        <div>
+            <h3>Welcome To Twitch !</h3>
+
+            <form action="" method='POST'>
+                {% csrf_token %}
+                {{form.as_p}}
+
+                <button type='submit' style='border-radius: 5px ;'>Submit</button>
+            </form>
+
+        </div>
+        <img src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?t=st=1708787498~exp=1708791098~hmac=91b5cf209d41c2eae1bc7af72524ba9a54f3a8c93de1336c78d121a2204d8cb2&w=740"
+                        >
+        
+    </div>
+
+</body>
+
+
+{% endblock body %}
